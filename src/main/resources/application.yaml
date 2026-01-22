@@ -13,13 +13,15 @@ spring:
             locator:
               enabled: false
               lower-case-service-id: true
+          default-filters:
+            - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin Access-Control-Request-Headers
+            - SaveSession
+            - TokenRelay=
           routes:
             - id: frontbff
               uri: http://localhost:3000
               predicates:
                 - Path=/**
-              filters:
-                - TokenRelay=
   security:
     oauth2:
       resourceserver:
@@ -35,7 +37,7 @@ spring:
             client-id: itp-frontbff
             client-secret: qwerqwer
             # redirect to gateway server
-            redirect-uri: http://localhost:9990/login/oauth2/code/itp-standard
+            redirect-uri: http://localhost:9990/login/oauth2/code/itp-frontbff
             authorization-grant-type:
               - authorization_code
             scope:

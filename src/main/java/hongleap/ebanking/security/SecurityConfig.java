@@ -15,17 +15,18 @@ public class SecurityConfig {
     public SecurityWebFilterChain webSecurty(ServerHttpSecurity http){
 
         // any service is secure
+//        http.authorizeExchange(exchange -> exchange
+//                .anyExchange().authenticated()
+//        );
+        // gateway service no security
         http.authorizeExchange(exchange -> exchange
+                .pathMatchers("/contact/**").authenticated()
                 .anyExchange().permitAll()
         );
-        // gateway service no security
-//        http.authorizeExchange(exchange -> exchange
-//                .anyExchange().permitAll()
-//        );
 
         http.csrf(ServerHttpSecurity.CsrfSpec::disable);
         http.formLogin(ServerHttpSecurity.FormLoginSpec::disable);
-        http.logout(ServerHttpSecurity.LogoutSpec::disable);
+//        http.logout(ServerHttpSecurity.LogoutSpec::disable);
         http.httpBasic(ServerHttpSecurity.HttpBasicSpec::disable);
 
         http.oauth2Login(Customizer.withDefaults());
