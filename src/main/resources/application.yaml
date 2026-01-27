@@ -48,10 +48,10 @@ server:
   port: 9990
 
 # Enable log Gateway
-logging:
-  level:
-    org.springframework.cloud.gateway: DEBUG
-    org.springframework.cloud.loadbalancer: TRACE
+#logging:
+#  level:
+#    org.springframework.cloud.gateway: DEBUG
+#    org.springframework.cloud.loadbalancer: TRACE
 eureka:
   instance:
     instance-id: ${spring.application.name}
